@@ -17,7 +17,7 @@ struct AddRecipeView: View {
     @State private var newClassingredients = [String]()
     @State private var customCategory = ""
 
-    let categories = ["Breakfast", "Lunch", "Dinner", "Desssert", "Other"]
+    let categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Other"]
 
     var body: some View {
         NavigationStack {

@@ -70,9 +70,9 @@ struct MyCookBookView: View {
                             .padding()
                             .background(Color.white)
                             .clipShape(Circle())
-                            .overlay(
-                                Circle().stroke(Color.black.opacity(0.5), lineWidth: 2)
-                            )
+                            .shadow(radius: 4, y: 2)
+
+                        
                     }
                     .padding(.bottom, 10)
                 }
