@@ -17,13 +17,15 @@ struct NavigationBar: View {
             ZStack {
                 HStack (spacing: 0) {
                     NavigationLink(destination: ExplorePageView()) {
-                        Text("Explore Recipies")
+                        Text("Explore Recipes")
                             .font(.system(size: 23, weight: .medium))
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity, maxHeight: 120)
                             .background(Color.white.opacity(0.9))
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                            .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.black.opacity(0.5), lineWidth: 2))
+                            .shadow(radius: 4, y: 2)
+
+                            
                     }
                     .ignoresSafeArea(edges: .bottom)
                     .offset(y: +372)
@@ -35,7 +37,9 @@ struct NavigationBar: View {
                             .frame(maxWidth: .infinity, maxHeight: 120)
                             .background(Color.white.opacity(0.9))
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                            .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.black.opacity(0.5), lineWidth: 2))
+                            .shadow(radius: 4, y: 2)
+
+                           
                     }
                     .ignoresSafeArea(edges: .bottom)
                     .offset(y: +372)
@@ -49,7 +53,9 @@ struct NavigationBar: View {
                         .padding()
                         .background(Color.white.opacity(1))
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.black.opacity(0.5), lineWidth: 2))
+                        .shadow(radius: 4, y: 2)
+
+                        
                 }
                 .offset(y: 325)
             }

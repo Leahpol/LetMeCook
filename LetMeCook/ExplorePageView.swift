@@ -24,7 +24,8 @@ struct ExplorePageView: View {
                             .padding()
                             .background(Color.white.opacity(1))
                             .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.black.opacity(0.5), lineWidth: 2))
+                            .shadow(radius: 4, y: 2)
+
                     }
                     .offset(y: 325)
                 }

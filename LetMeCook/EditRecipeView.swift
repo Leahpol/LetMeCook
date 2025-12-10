@@ -17,7 +17,7 @@ struct EditRecipeView: View {
     @State private var editedIngredients: [String]
     @State private var editedSteps: String
     
-    let categories = ["Breakfast", "Lunch", "Dinner", "Desssert", "Other"]
+    let categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Other"]
     @State private var customCategory = ""
     
     init(recipe: Recipe) {
