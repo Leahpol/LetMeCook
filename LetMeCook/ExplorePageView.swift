@@ -1,20 +1,18 @@
-//
 //  ExplorePageView.swift
 //  LetMeCook
 //
 //  Created by Leah Polonsky on 11/21/25.
 //
-
 import SwiftUI
-
+import SwiftData
 struct ExplorePageView: View {
-    @Binding var recipes: [Recipe]
     @State private var isPresentingAddRecipeSheet = false
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 Color("BackgroundColor")
-                        .ignoresSafeArea()
+                    .ignoresSafeArea()
                 
                 VStack{
                     Button(action: {
@@ -34,23 +32,13 @@ struct ExplorePageView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             .sheet(isPresented: $isPresentingAddRecipeSheet) {
-                AddRecipeView(recipes: $recipes)
+                AddRecipeView()
             }
         }
     }
 }
-
 #Preview {
-    ExplorePreviewWrapper()
+    ExplorePageView()
+        .modelContainer(for: Recipe.self)
 }
-struct ExplorePreviewWrapper: View {
-    @State private var recipes = [
-        Recipe(name: "Example", category: "Dinner", ingredients: ["Eggs"], steps: "Mix and cook.")
-    ]
-
-    var body: some View {
-        ExplorePageView(recipes: $recipes)
-    }
-}
-
 
