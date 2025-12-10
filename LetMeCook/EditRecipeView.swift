@@ -6,7 +6,6 @@
 //
 import SwiftUI
 import SwiftData
-
 struct EditRecipeView: View {
     @Environment(\.dismiss) private var dismiss
     @Bindable var recipe: Recipe
@@ -17,7 +16,7 @@ struct EditRecipeView: View {
     @State private var editedIngredients: [String]
     @State private var editedSteps: String
     
-    let categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Other"]
+    let categories = ["Breakfast", "Lunch", "Dinner", "Desssert", "Other"]
     @State private var customCategory = ""
     
     init(recipe: Recipe) {
@@ -178,3 +177,4 @@ struct EditRecipeView: View {
         recipe.steps = editedSteps
     }
 }
+

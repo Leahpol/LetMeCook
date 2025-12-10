@@ -5,10 +5,10 @@
 //
 import SwiftUI
 import SwiftData
-
 struct MyCookBookView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Recipe.category) private var recipes: [Recipe]
+    @Query(sort: \FoodItem.name) private var fridgeItems: [FoodItem]
     @State private var isPresentingAddRecipeSheet = false
     @State private var editMode: EditMode = .inactive
     
@@ -40,10 +40,18 @@ struct MyCookBookView: View {
                             Section {
                                 ForEach(groupedRecipes[category]!) { recipe in
                                     NavigationLink(destination: RecipeView(recipe: recipe)) {
-                                        Text(recipe.name)
-                                            .font(.system(size: 20))
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .padding(.vertical, 4)
+                                        HStack {
+                                            Circle()
+                                                .fill(recipeMatchColor(for: recipe, fridge: fridgeItems))
+                                                .frame(width: 14, height: 14)
+                                            
+                                            Text(recipe.name)
+                                                .font(.system(size: 20))
+                                                .padding(.leading, 6)
+                                            
+                                            Spacer()
+                                        }
+                                        .padding(.vertical, 4)
                                     }
                                 }
                                 .onDelete { indexSet in
@@ -70,9 +78,9 @@ struct MyCookBookView: View {
                             .padding()
                             .background(Color.white)
                             .clipShape(Circle())
-                            .shadow(radius: 4, y: 2)
-
-                        
+                            .overlay(
+                                Circle().stroke(Color.black.opacity(0.5), lineWidth: 2)
+                            )
                     }
                     .padding(.bottom, 10)
                 }
@@ -108,8 +116,25 @@ struct MyCookBookView: View {
         }
     }
 }
-
 #Preview {
     MyCookBookView()
         .modelContainer(for: Recipe.self)
+}
+func recipeMatchColor(for recipe: Recipe, fridge: [FoodItem]) -> Color {
+    let fridgeItems = fridge.map { $0.name.lowercased() }
+    let recipeIngredients = recipe.ingredients.map { $0.lowercased() }
+    
+    guard !recipeIngredients.isEmpty else { return .gray }
+    
+    let matches = recipeIngredients.filter { fridgeItems.contains($0) }.count
+    let percentage = Double(matches) / Double(recipeIngredients.count)
+    
+    switch percentage {
+    case 0..<0.33:
+        return .red
+    case 0.33..<0.67:
+        return .yellow
+    default:
+        return .green
+    }
 }

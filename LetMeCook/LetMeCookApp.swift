@@ -11,7 +11,6 @@ struct LetMeCookApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Recipe.self)
+        .modelContainer(for: [Recipe.self, FoodItem.self, ShoppingItem.self])
     }
 }
-

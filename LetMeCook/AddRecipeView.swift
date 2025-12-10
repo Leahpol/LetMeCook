@@ -5,7 +5,6 @@
 //
 import SwiftUI
 import SwiftData
-
 struct AddRecipeView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -16,9 +15,7 @@ struct AddRecipeView: View {
     @State var selectedCategory = "Breakfast"
     @State private var newClassingredients = [String]()
     @State private var customCategory = ""
-
-    let categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Other"]
-
+    let categories = ["Breakfast", "Lunch", "Dinner", "Desssert", "Other"]
     var body: some View {
         NavigationStack {
             ZStack {

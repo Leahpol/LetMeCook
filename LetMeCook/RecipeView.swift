@@ -5,7 +5,6 @@
 //
 import SwiftUI
 import SwiftData
-
 struct RecipeView: View {
     @Bindable var recipe: Recipe
     @State private var isPresentingEditSheet = false
