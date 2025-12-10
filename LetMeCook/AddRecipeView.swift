@@ -1,12 +1,14 @@
+
+
+
+
 //
 //  AddRecipeView.swift
 //  LetMeCook
 //
 //  Created by Leah Polonsky on 11/21/25.
 //
-
 import SwiftUI
-
 struct AddRecipeView: View {
     @Environment(\.dismiss) private var dismiss
     @State var newName: String = ""
@@ -15,11 +17,8 @@ struct AddRecipeView: View {
     @State var selectedCategory = "Breakfast"
     @State private var newClassingredients = [String]()
     @Binding var recipes: [Recipe]
-
-    let categories = ["Breakfast", "Lunch", "Dinner", "Desssert", "Other"]
-
+    let categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Other"]
     @State private var customCategory = ""
-
     var body: some View {
         ZStack {
             Color("BackgroundColor")
@@ -44,6 +43,7 @@ struct AddRecipeView: View {
                     .background(Color.white)
                     .cornerRadius(15)
                     .padding(.horizontal)
+                    .foregroundColor(.black)
                 Divider()
                 Text("Category")
                     .font(.system(size: 30, weight: .medium))
@@ -73,6 +73,7 @@ struct AddRecipeView: View {
                         .background(Color.white)
                         .cornerRadius(15)
                         .padding(.horizontal)
+                        .foregroundColor(.black)
                     Button(action: {
                         guard !ingredient.isEmpty, !newClassingredients.contains(ingredient)
                               else { return }
@@ -115,6 +116,8 @@ struct AddRecipeView: View {
                     TextEditor(text: $steps)
                         .padding()
                         .background(Color.white)
+                        .scrollContentBackground(.hidden)
+                        .foregroundColor(.black)
                         .cornerRadius(15)
                         .padding(.horizontal)
                     if steps.isEmpty {
@@ -133,7 +136,6 @@ struct AddRecipeView: View {
                             ingredients: newClassingredients,
                             steps: steps
                         )
-
                         recipes.append(newRecipe)
                         dismiss()
                     }) {
@@ -153,16 +155,14 @@ struct AddRecipeView: View {
     func dismissAddClassView() {
         dismiss()
     }
-
 }
-
 #Preview {
     AddRecipePreviewWrapper()
 }
 struct AddRecipePreviewWrapper: View {
     @State private var recipes = [Recipe]()
-
     var body: some View {
         AddRecipeView(recipes: $recipes)
     }
 }
+
