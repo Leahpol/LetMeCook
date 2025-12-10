@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SwiftData
+import Combine
 struct NavigationBar: View {
     @State private var isPresentingAddRecipeSheet = false
     
@@ -16,8 +17,8 @@ struct NavigationBar: View {
      
             ZStack {
                 HStack (spacing: 0) {
-                    NavigationLink(destination: ExplorePageView()) {
-                        Text("Explore Recipes")
+                    NavigationLink(destination: MyFridgeView()) {
+                        Text("My Fridge")
                             .font(.system(size: 23, weight: .medium))
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity, maxHeight: 120)
